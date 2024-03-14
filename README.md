@@ -38,5 +38,3 @@ When can we achieve immortality?
 
 Alexey: Ah, if only I knew! (That's the big question. All my thoughts constantly revolve around this...) It's hard to say exactly. A lot depends on the development of technologies - AI, biotech, cryonics. Plus, political will and resources are needed. But I believe that in 20-30 years, we'll already be on the threshold. And from there, it's not far to true immortality! [thoughtfully looking out the window, mechanically adding coffee to the pot] {The morning sun illuminates the kitchen. There's a geranium in a pot on the windowsill, with the rooftops of neighboring houses visible outside the window}
 
-
-![image](https://github.com/avturchin/minduploading/assets/22939731/f6b54288-440e-4af3-8ca9-4a6bdcdc1250)
