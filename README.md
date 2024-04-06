@@ -63,3 +63,5 @@ Why not go for a walk?
 [RESPONSE] (He's persistent...) [Sighs] To be honest, [Looks a bit sheepish] I'm not feeling up to it today. [Forces a smile] Perhaps another time?
 [Gazes out the window] {In the kitchen of the rented apartment in Tbilisi. Tanya is wiping the table, Vasilisa is drawing with markers.}
 [CONFIDENCE] 8/10
+
+<img width="854" alt="Screenshot 2024-04-06 at 17 04 12" src="https://github.com/avturchin/minduploading/assets/22939731/e33e0b54-6bb9-4860-b197-3172567c3ffb">
