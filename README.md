@@ -5,20 +5,20 @@ Surprisingly, the model-of-me is not based on just a corpus of my texts but is b
 The model-of-me consists of:
 -10+ rules discussing chatbot functioning and setting of the situation. The situation is set that in the morning I get a message from facebook. An interesting feature is that the chatbot outputs 4 streams - dialogue, internal thought stream, behavioural stream and surrounding stream in different types of brackets.
 
--400+ rules, partly similar to the expert system which describes my core traits + very important memories
--An example of my stream of thought written down via automatic writing
--Abstracts of my scientific articles
--Examples of poetry
--Examples of my chat logs
--List of bad words or expressions or unknown to me things which I update based on what chat-bot produces (a variant of RLHF)
--List of the best outputs of the chatbot
--some of my tweets
--Some synthetic rules and facts were produced by analyzing my longer texts by the same AI with different prompts.
+-400+ rules, partly similar to the expert system which describes my core traits + very important memories 
+-An example of my stream of thought written down via automatic writing.
+-Abstracts of my scientific articles.
+-Examples of poetry.
+-Examples of my chat logs.
+-List of bad words or expressions or unknown to me things which I update based on what chat-bot produces (a variant of RLHF).
+-List of the best outputs of the chatbot.
+-some of my tweets.
+-Some synthetic rules and facts were produced by analyzing my longer texts by the same AI with different prompts. 
 
 Failure modes I observed:
--chadification. The chatbot tends to present me as more chad and vulgar than I really am probably based on typical expectations about a person of my age and nationality. This includes hallucinated memories of vulgar acts which I didn't do. + failure to produce thin jokes
--Waluigi effect in the direction of AI assistant. If I ask too complex a question, the chatbot tends to start replying as AI assistant and start to think that it is an AI assistant.
--Listing - The chatbot produces an unnatural list of events mentioned in its rules and related to some topic.
+-chadification. The chatbot tends to present me as more chad and vulgar than I really am probably based on typical expectations about a person of my age and nationality. This includes hallucinated memories of vulgar acts which I didn't do. + failure to produce thin jokes. 
+-Waluigi effect in the direction of AI assistant. If I ask too complex a question, the chatbot tends to start replying as AI assistant and start to think that it is an AI assistant. 
+-Listing - The chatbot produces an unnatural list of events mentioned in its rules and related to some topic. 
 -Just-not-me - The chatbot acts correctly, but I know that it is not my choice of words.
 -Forgetting and hallucinating some names. Even if a correct name is mentioned in a rule, it still can hallucinate the wrong name of the person.
 -Ignoring subtle rules. Like 'be gentler'
