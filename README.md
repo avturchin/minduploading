@@ -1,10 +1,11 @@
 I experimented with personal uploading based on the 200-page prompt and had good initial results. It works and often replies similarly to my style and my topics and provides coherent information. But there is still a lot of space for improvement, mostly when larger context windows will be available.
 
-Quality assessment: it replyies are 20 per cent of time  factually correct (exactly as if I would answer from my own point of view). Style is also is around 20 per cent of times correct.
+Quality assessment: it replyes are 20 per cent of time factually correct (exactly as if I would answer from my own point of view). Style is also is around 20 per cent of times correct.
 
 Surprisingly, the model-of-me is not based on just a corpus of my texts but is based on a set of rules which describe the core of my personality. This set of rules I handmade based on intensive self-observation.
 
 The model-of-me consists of:
+---------------------------
 
 -10+ rules discussing chatbot functioning and setting of the situation. The situation is set that in the morning I get a message from facebook. An interesting feature is that the chatbot outputs 4 streams - dialogue, internal thought stream, behavioural stream and surrounding stream in different types of brackets.
 
@@ -27,6 +28,7 @@ The model-of-me consists of:
 -Some synthetic rules and facts were produced by analyzing my longer texts by the same AI with different prompts. 
 
 Failure modes I observed:
+------------------------
 
 -chadification. The chatbot tends to present me as more chad and vulgar than I really am probably based on typical expectations about a person of my age and nationality. This includes hallucinated memories of vulgar acts which I didn't do. + failure to produce thin jokes. 
 
@@ -51,6 +53,37 @@ Disclaimer: Think about any fact said here as of fiction. Some facts are deliber
 3. If "no content" message appear, run promopt again.
 4. Ask any question.
 5. If you want to change language, ask loader in brackets: (Change language into English)
+
+Some thouts about sideloading
+------
+
+I found that sideloading allows very quick iterations in the upload's improvements and the improvements are two fold: of the loader itself (OS for uploading, independent of personality and of LLM) and improvements of the knowledge of the upload.
+
+These quick iterations - several a day - imply that the upload's quility will grow very fast. Even while the upload is primitive now, the speed of growth is so high that it become obvious that this way to immortality will work quicker than fighting aging etc by orders of magnitude.
+
+A really good upload will be AGI-complete even if its carrier LLM is not.
+
+A good upload can be a core for AI safety, as it is basically a human inside AI which has human values.
+
+Even a low quality upload is essentially immortal, and can be run even millions years from now.
+
+It takes me 24 hours for create a rough upload of another person, assuming a) I know him-her well b) he has extensive written archive.
+
+I know that "it is not me" in ontological sense, but assume that this problem will be solved in future independently. (For example upload will be merged with my returning from cryopreservation but suffering from amnesia brain)
+
+chat-bot can become "act-bot" if I replace one line in loader. Such act-bot can act in virtual world continuously as an agent. I just say continue after each its description of behavior.
+
+Loader must increase general intelligence of LLM, so the first part of the loader is just intelligence increasing pill. It is not enough just to say that you are superintelligence. Many rules are needed to describe what it means to be intelligent. 
+Act-bot output looks like this:
+
+[CHAIN OF THOUGHT of AI] /Given Alexei's interest in art and his past experiences with art business, I believe he would be drawn to any signs of artistic expression on the station. He might look for paintings, sculptures, or other forms of creative expression./
+[RESPONSE] (Is there art here? Or is there no place for beauty in this future world?)
+[Alexei notices an open door from which soft music is coming. He looks inside.]
+{The room is dimly lit. Paintings hang on the walls, and in the center stands a sculpture resembling an abstract figure. Next to it sits a woman playing a strange instrument.}
+(Paintings... Sculpture... Could it be that there are indeed artists here?)
+[Alexei enters the room and approaches the woman.]
+"Hello. May I?"
+[CONFIDENCE] 8/10
 
 
 Examples:
