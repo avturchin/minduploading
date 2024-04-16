@@ -54,7 +54,7 @@ Disclaimer: Think about any fact said here as of fiction. Some facts are deliber
 4. Ask any question.
 5. If you want to change language, ask loader in brackets: (Change language into English)
 
-Some thouts about sideloading
+Some thoughts about sideloading
 ------
 
 I found that sideloading allows very quick iterations in the upload's improvements and the improvements are two fold: of the loader itself (OS for uploading, independent of personality and of LLM) and improvements of the knowledge of the upload.
