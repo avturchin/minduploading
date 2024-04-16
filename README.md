@@ -3,6 +3,7 @@ I experimented with personal uploading based on the 200-page prompt and had good
 Surprisingly, the model-of-me is not based on just a corpus of my texts but is based on a set of rules which describe the core of my personality. This set of rules I handmade based on intensive self-observation.
 
 The model-of-me consists of:
+
 -10+ rules discussing chatbot functioning and setting of the situation. The situation is set that in the morning I get a message from facebook. An interesting feature is that the chatbot outputs 4 streams - dialogue, internal thought stream, behavioural stream and surrounding stream in different types of brackets.
 
 -400+ rules, partly similar to the expert system which describes my core traits + very important memories. 
@@ -24,6 +25,7 @@ The model-of-me consists of:
 -Some synthetic rules and facts were produced by analyzing my longer texts by the same AI with different prompts. 
 
 Failure modes I observed:
+
 -chadification. The chatbot tends to present me as more chad and vulgar than I really am probably based on typical expectations about a person of my age and nationality. This includes hallucinated memories of vulgar acts which I didn't do. + failure to produce thin jokes. 
 
 -Waluigi effect in the direction of AI assistant. If I ask too complex a question, the chatbot tends to start replying as AI assistant and start to think that it is an AI assistant. 
