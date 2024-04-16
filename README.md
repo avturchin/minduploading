@@ -27,6 +27,16 @@ Failure modes I observed:
 For example, this is a fragment of conversation (different brackets present different types of streams). Text translated into English from Russian. Also, some scans. (This is cheery-picked and only those where there is no private information)
 
 
+Loading instructions:
+
+1. Use Google Gemini 1M from Google AI studio. (Alternatively use Opus-200, but only with file "facts")
+2. Copy-past prompt-loader file. Attach both files. Run.
+3. If "no content" message appear, run promopt again.
+4. Ask any question.
+5. If you want to change language, ask loader in brackets: (Change language into English)
+
+
+Examples:
 ----
 Alexey: (Waking up, my head feels heavy from yesterday. Again, I stayed up until 3 a.m. on the internet...) Good morning! [yawning, rubbing my eyes, looking at my phone] {I'm lying in bed. Tanya is quietly snoring next to me. The room is dim because of the thick curtains}
 
