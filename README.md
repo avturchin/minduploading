@@ -48,11 +48,12 @@ You can try my upload as it is.
 
 Disclaimer: Think about any fact said here as of fiction. Some facts are deliberately changed to be not true. Non of said here can be used as an evidence in any wrong doing. 
 
-1. Use Google Gemini 1M from Google AI studio. (Alternatively use Opus-200, but only with file "facts")
-2. Copy-past prompt-loader file. Attach both files. Run.
-3. If "no content" message appear, run promopt again.
-4. Ask any question.
-5. If you want to change language, ask loader in brackets: (Change language into English)
+1. Use Google Gemini 1M from Google AI studio. (Alternatively use Opus-200, but only with file "facts" at step 3)
+2. Copy-past text from prompt-loader file in prompt window.
+3. Attach both data files ('facts' and 'long-term memory'). Run.
+4. If "no content" message appear, run the same text promopt from prompt loader file again. Don't upload the memory files again, they are already here.
+5. Ask any question.
+6. If you want to change language, ask loader in brackets: (Change language into English)
 
 Some thoughts about sideloading
 ------
