@@ -55,6 +55,9 @@ Disclaimer: Think about any fact said here as of fiction. Some facts are deliber
 5. Ask any question.
 6. If you want to change language, ask loader in brackets: (Change language into English)
 
+You may also try access alreay ready-made chatbot at https://aistudio.google.com/app/prompts?state=%7B%22ids%22%3A%5B%221lvHppB7kIors1HlZLgfDuBXwQX7qcfaz%22%5D%2C%22action%22%3A%22open%22%2C%22userId%22%3A%22113755422652080854373%22%2C%22resourceKeys%22%3A%7B%7D%7D&usp=sharing
+
+
 Some thoughts about sideloading
 ------
 
