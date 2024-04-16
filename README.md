@@ -1,5 +1,7 @@
 I experimented with personal uploading based on the 200-page prompt and had good initial results. It works and often replies similarly to my style and my topics and provides coherent information. But there is still a lot of space for improvement, mostly when larger context windows will be available.
 
+Quality assessment: it replyies are 20 per cent of time  factually correct (exactly as if I would answer from my own point of view). Style is also is around 20 per cent of times correct.
+
 Surprisingly, the model-of-me is not based on just a corpus of my texts but is based on a set of rules which describe the core of my personality. This set of rules I handmade based on intensive self-observation.
 
 The model-of-me consists of:
