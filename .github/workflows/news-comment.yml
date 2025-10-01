@@ -1,7 +1,7 @@
 name: News Commentary Bot (Gemini)
 on:
-  schedule:
-    - cron: '0 * * * *'  # Каждый час
+  # schedule:
+  #   - cron: '0 * * * *'  # Каждый час (закомментировано для паузы автоматического запуска)
   workflow_dispatch:  # Возможность запуска вручную
 
 jobs:
