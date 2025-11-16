@@ -2,22 +2,22 @@ Sideloading is a proposed method for creating a detailed digital model of a pers
 By systematically assembling “core facts,” “long-term memory,” and “historical facts,” a sideload can deliver better predictive accuracy and more coherent personal narratives. Core facts take precedence in the main LLM prompt, while long-term memory is best managed through retrieval-augmented generation, and historical facts - which are often less crucial in day-to-day cognition - can be leveraged to extract more relevant information.
 Preliminary results with a sideload for Alexey Turchin indicate around 70% factual accuracy, 20% alignment with the original “vibe” or personality style, near-zero novel insights, and about 10% overall “coarseness” (level of detail). Although these findings highlight existing limitations, such as LLM prompt-size constraints and incomplete personal data, they also indicate that sideloading is a rapidly evolving technology already viable for certain applications, including AI safety research, personal memory preservation, and prototype “digital immortality.”
 Looking ahead, researchers anticipate further advances with emerging large-prompt LLMs, allowing for richer data capture, improved personality alignment, and higher fidelity internal process simulation - potentially representing a significant step toward more comprehensive mind-modeling and personal preservation.
-<img width="468" height="346" alt="image" src="https://github.com/user-attachments/assets/c2aa3809-8b71-45e4-9199-5f16658184a3" />
+
 
 Interactive Sideload:
 https://chatgpt.com/g/g-EeFIesHsn-alexey-turchin-v7
 (Allows direct testing of the sideload implementation)
 Permanent address of the article https://philpapers.org/rec/TURSCA-3  
-<img width="468" height="97" alt="image" src="https://github.com/user-attachments/assets/d4b042ab-9e08-4901-8512-2f4a5fd6cf86" />
+
 
 
 
 The model-of-me consists of:
 ---------------------------
 
--10+ rules discussing chatbot functioning and setting of the situation. The situation is set that in the morning I get a message from facebook. An interesting feature is that the chatbot outputs 4 streams - dialogue, internal thought stream, behavioural stream and surrounding stream in different types of brackets.
+Prompt loader: 30+ rules discussing chatbot functioning and setting of the situation. The situation is set that in the morning I get a message from facebook. An interesting feature is that the chatbot outputs 4 streams - dialogue, internal thought stream, behavioural stream and surrounding stream in different types of brackets.
 
--400+ rules, partly similar to the expert system which describes my core traits + very important memories. 
+Core personality description: -400+ rules, partly similar to the expert system which describes my core traits + very important memories. 
 
 -An example of my stream of thought written down via automatic writing.
 
@@ -34,20 +34,6 @@ The model-of-me consists of:
 -some of my tweets.
 
 -Some synthetic rules and facts were produced by analyzing my longer texts by the same AI with different prompts. 
-
-Failure modes I observed:
-------------------------
-
--chadification. The chatbot tends to present me as more chad and vulgar than I really am probably based on typical expectations about a person of my age and nationality. This includes hallucinated memories of vulgar acts which I didn't do. + failure to produce thin jokes. 
-
--Waluigi effect in the direction of AI assistant. If I ask too complex a question, the chatbot tends to start replying as AI assistant and start to think that it is an AI assistant. 
--Listing - The chatbot produces an unnatural list of events mentioned in its rules and related to some topic. 
-
--Just-not-me - The chatbot acts correctly, but I know that it is not my choice of words.
-
--Forgetting and hallucinating some names. Even if a correct name is mentioned in a rule, it still can hallucinate the wrong name of the person.
-
--Ignoring subtle rules. Like 'be gentler'
 
 
 Loading instructions:
