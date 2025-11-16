@@ -1,6 +1,8 @@
 Sideloading is a proposed method for creating a detailed digital model of a person – called a “sideload” – using Large Language Models (LLMs). It involves iteratively refining the model’s prompt with input from the individual, thus capturing their internal thought processes and personal style more accurately. Unlike ordinary chatbots focused on simulating external behavior, sideloads aim to replicate a person’s internal dialogue and decision-making processes.
 By systematically assembling “core facts,” “long-term memory,” and “historical facts,” a sideload can deliver better predictive accuracy and more coherent personal narratives. Core facts take precedence in the main LLM prompt, while long-term memory is best managed through retrieval-augmented generation, and historical facts - which are often less crucial in day-to-day cognition - can be leveraged to extract more relevant information.
+
 Preliminary results with a sideload for Alexey Turchin indicate around 70% factual accuracy, 20% alignment with the original “vibe” or personality style, near-zero novel insights, and about 10% overall “coarseness” (level of detail). Although these findings highlight existing limitations, such as LLM prompt-size constraints and incomplete personal data, they also indicate that sideloading is a rapidly evolving technology already viable for certain applications, including AI safety research, personal memory preservation, and prototype “digital immortality.”
+
 Looking ahead, researchers anticipate further advances with emerging large-prompt LLMs, allowing for richer data capture, improved personality alignment, and higher fidelity internal process simulation - potentially representing a significant step toward more comprehensive mind-modeling and personal preservation.
 
 
@@ -8,7 +10,6 @@ My Sideload:
 https://chatgpt.com/g/g-EeFIesHsn-alexey-turchin-v7
 
 Permanent address of the article: https://philpapers.org/rec/TURSCA-3  
-
 
 
 
@@ -43,17 +44,15 @@ You can try my upload as it is.
 Disclaimer: Think about any fact said here as of fiction. Some facts are deliberately changed to be not true. Non of said here can be used as an evidence in any wrong doing. 
 
 1. Use Google Gemini 1M from Google AI studio. (Alternatively use Opus-200, but only with file "facts" at step 3)
-2. Copy-past text from prompt-loader file in prompt window.
-3. Attach both data files ('facts' and 'long-term memory'). Run.
-4. If "no content" message appear, run the same text promopt from prompt loader file again. Don't upload the memory files again, they are already here.
-5. Ask any question.
-6. If you want to change language, ask loader in brackets: (Change language into English)
-
-You may also try access alreay ready-made chatbot at https://aistudio.google.com/app/prompts?state=%7B%22ids%22%3A%5B%221lvHppB7kIors1HlZLgfDuBXwQX7qcfaz%22%5D%2C%22action%22%3A%22open%22%2C%22userId%22%3A%22113755422652080854373%22%2C%22resourceKeys%22%3A%7B%7D%7D&usp=sharing
+2. Copy-past text from prompt-loader file in prompt window from https://github.com/avturchin/minduploading/tree/main/latest 
+3. Attach both data files ('facts' and 'long-term memory') from https://github.com/avturchin/minduploading/tree/main/latest
+4. Run.
+6. Ask any question.
+7. If you want to change language, ask loader in brackets: (Change language into English)
 
 
 Some thoughts about sideloading
-------
+=
 
 I found that sideloading allows very quick iterations in the upload's improvements and the improvements are two fold: of the loader itself (OS for uploading, independent of personality and of LLM) and improvements of the knowledge of the upload.
 
@@ -71,8 +70,10 @@ I know that "it is not me" in ontological sense, but assume that this problem wi
 
 chat-bot can become "act-bot" if I replace one line in loader. Such act-bot can act in virtual world continuously as an agent. I just say continue after each its description of behavior.
 
-Loader must increase general intelligence of LLM, so the first part of the loader is just intelligence increasing pill. It is not enough just to say that you are superintelligence. Many rules are needed to describe what it means to be intelligent. 
+Loader must increase general intelligence of LLM, so the first part of the loader is just intelligence increasing pill. It is not enough just to say that you are superintelligence. Many rules are needed to describe what it means to be intelligent.
+
 Act-bot output looks like this:
+=
 
 [CHAIN OF THOUGHT of AI] /Given Alexei's interest in art and his past experiences with art business, I believe he would be drawn to any signs of artistic expression on the station. He might look for paintings, sculptures, or other forms of creative expression./
 [RESPONSE] (Is there art here? Or is there no place for beauty in this future world?)
