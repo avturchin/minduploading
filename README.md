@@ -4,15 +4,15 @@ Preliminary results with a sideload for Alexey Turchin indicate around 70% factu
 Looking ahead, researchers anticipate further advances with emerging large-prompt LLMs, allowing for richer data capture, improved personality alignment, and higher fidelity internal process simulation - potentially representing a significant step toward more comprehensive mind-modeling and personal preservation.
 
 
-Interactive Sideload:
+My Sideload:
 https://chatgpt.com/g/g-EeFIesHsn-alexey-turchin-v7
-(Allows direct testing of the sideload implementation)
-Permanent address of the article https://philpapers.org/rec/TURSCA-3  
+
+Permanent address of the article: https://philpapers.org/rec/TURSCA-3  
 
 
 
 
-The model-of-me consists of:
+The sideload (or mind model) consists of:
 ---------------------------
 
 Prompt loader: 30+ rules discussing chatbot functioning and setting of the situation. The situation is set that in the morning I get a message from facebook. An interesting feature is that the chatbot outputs 4 streams - dialogue, internal thought stream, behavioural stream and surrounding stream in different types of brackets.
