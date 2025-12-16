@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fermi Paradox — Full Map of Solutions</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:wght@700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'PT Sans', Arial, sans-serif;
+            background: #f5f5f3;
+            color: #1a1a1a;
+            min-height: 100vh;
+            overflow-x: auto;
+        }
+        
+        .header {
+            background: #1a1a1a;
+            color: #f5f5f3;
+            padding: 30px 40px;
+            position: sticky;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+        
+        h1 {
+            font-family: 'PT Serif', Georgia, serif;
+            font-size: 36px;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .legend-bar {
+            background: #fff;
+            padding: 12px 40px;
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            align-items: center;
+            position: sticky;
+            left: 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 11px;
+            color: #666;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .tag {
+            padding: 2px 6px;
+            border-radius: 2px;
+            font-size: 9px;
+            font-weight: 700;
+        }
+        
+        .tag.g { background: #1a1a1a; color: #fff; }
+        .tag.p { background: #888; color: #fff; }
+        
+        .prob {
+            font-size: 10px;
+            font-weight: 700;
+            min-width: 32px;
+            text-align: right;
+        }
+        
+        .prob.high { color: #1a1a1a; }
+        .prob.med { color: #555; }
+        .prob.low { color: #999; }
+        
+        .columns-wrapper {
+            display: flex;
+            min-height: calc(100vh - 150px);
+        }
+        
+        .column {
+            min-width: 260px;
+            max-width: 260px;
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+        
+        .column:nth-child(odd) {
+            background: #fafaf8;
+        }
+        
+        .column:last-child {
+            border-right: none;
+        }
+        
+        .column-header {
+            padding: 14px 12px;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        .column-header .pct {
+            font-family: 'PT Serif', Georgia, serif;
+            font-size: 18px;
+            letter-spacing: -1px;
+        }
+        
+        .column:nth-child(1) .column-header { border-bottom-color: #c44; }
+        .column:nth-child(2) .column-header { border-bottom-color: #475569; }
+        .column:nth-child(3) .column-header { border-bottom-color: #d97706; }
+        .column:nth-child(4) .column-header { border-bottom-color: #4f46e5; }
+        .column:nth-child(5) .column-header { border-bottom-color: #9333ea; }
+        .column:nth-child(6) .column-header { border-bottom-color: #db2777; }
+        .column:nth-child(7) .column-header { border-bottom-color: #059669; }
+        .column:nth-child(8) .column-header { border-bottom-color: #0891b2; }
+        .column:nth-child(9) .column-header { border-bottom-color: #64748b; }
+        
+        .column-content {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        
+        .subcategory-title {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #888;
+            margin: 12px 0 6px 0;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 5px;
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 10px;
+            line-height: 1.3;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        
+        .item:last-child {
+            border-bottom: none;
+        }
+        
+        .item:hover {
+            background: rgba(0,0,0,0.04);
+            margin: 0 -10px;
+            padding: 5px 10px;
+        }
+        
+        .item .text {
+            flex: 1;
+            color: #333;
+        }
+        
+        .item .text a {
+            color: #1a1a1a;
+            text-decoration: none;
+            border-bottom: 1px dotted #999;
+        }
+        
+        .item .text a:hover {
+            border-bottom-style: solid;
+        }
+        
+        .item.warning {
+            background: #fff8f8;
+            margin: 0 -10px;
+            padding: 5px 10px;
+            border-left: 2px solid #c44;
+        }
+        
+        .total-bar {
+            background: #1a1a1a;
+            color: #f5f5f3;
+            padding: 18px 40px;
+            position: sticky;
+            left: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .total-bar .left {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .total-bar .left a {
+            color: #aaa;
+        }
+        
+        .total-bar .right {
+            font-family: 'PT Serif', Georgia, serif;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f0f0f0; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 3px; }
+
+        /* Modal styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal {
+            background: #fff;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .modal-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        
+        .modal-title {
+            font-family: 'PT Serif', Georgia, serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+            line-height: 1;
+            padding: 0;
+        }
+        
+        .modal-close:hover {
+            color: #333;
+        }
+        
+        .modal-body {
+            padding: 20px 24px;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #444;
+        }
+        
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-prob {
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .modal-link {
+            color: #4f46e5;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        
+        .modal-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Full map of possible solutions of the Fermi paradox</h1>
+        <div class="subtitle">G = Global (all civilizations) · P = Probabilistic (some civilizations) · Click any item for explanation</div>
+    </div>
+    
+    <div class="legend-bar">
+        <div class="legend-item"><span class="tag g">G</span> Global</div>
+        <div class="legend-item"><span class="tag p">P</span> Probabilistic</div>
+        <div class="legend-item" style="margin-left:auto;"><span class="prob high">3%+</span></div>
+        <div class="legend-item"><span class="prob med">1–3%</span></div>
+        <div class="legend-item"><span class="prob low">&lt;1%</span></div>
+        <div class="legend-item" style="color:#999;">underlined = link</div>
+    </div>
+
+    <div class="columns-wrapper">
+        
+        <!-- 1: RARE EARTH / EARLIER FILTER -->
+        <div class="column">
+            <div class="column-header">
+                <span>Rare Earth<br><small style="font-weight:400;font-size:8px;">Earlier filter</small></span>
+                <span class="pct">18%</span>
+            </div>
+            <div class="column-content">
+                <div class="item" data-key="abiogenesis"><span class="tag g">G</span><span class="text">Abiogenesis is difficult</span><span class="prob high">5.0%</span></div>
+                <div class="item" data-key="multicellular"><span class="tag g">G</span><span class="text">Multicellur life is difficult</span><span class="prob high">3.0%</span></div>
+                <div class="item" data-key="intelligence"><span class="tag g">G</span><span class="text">Intelligence is difficult</span><span class="prob high">3.0%</span></div>
+                <div class="item" data-key="solar_special"><span class="tag p">P</span><span class="text">Solar system is special</span><span class="prob med">2.0%</span></div>
+                <div class="item" data-key="no_time"><span class="tag g">G</span><span class="text">No time for all transitions</span><span class="prob med">2.0%</span></div>
+                <div class="item" data-key="atmosphere" data-url="https://philarchive.org/rec/TURAPA-9"><span class="tag p">P</span><span class="text"><a href="https://philarchive.org/rec/TURAPA-9" target="_blank">Earth atmosphere remains stable</a></span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="no_catastrophes"><span class="tag p">P</span><span class="text">No space catastrophes</span><span class="prob med">1.5%</span></div>
+            </div>
+        </div>
+
+        <!-- 2: ANTHROPIC SHADOW -->
+        <div class="column">
+            <div class="column-header">
+                <span>Anthropic shadow<br><small style="font-weight:400;font-size:8px;">Past x-risks not happened</small></span>
+                <span class="pct">7%</span>
+            </div>
+            <div class="column-content">
+                <div class="item" data-key="no_peak_oil"><span class="tag p">P</span><span class="text">No peak oil in 20 century</span><span class="prob med">1.0%</span></div>
+                <div class="item" data-key="no_nuclear_war"><span class="tag p">P</span><span class="text">No nuclear war in 20 century</span><span class="prob med">2.0%</span></div>
+                <div class="item" data-key="anthropic_shadow"><span class="tag g">G</span><span class="text">Anthropic shadow</span><span class="prob med">2.0%</span></div>
+                <div class="item" data-key="survival_anthropic" data-url="https://philarchive.org/rec/TURAPA-9"><span class="tag g">G</span><span class="text"><a href="https://philarchive.org/rec/TURAPA-9" target="_blank">If survival is anthropic – we are alone</a></span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="covid_mild"><span class="tag p">P</span><span class="text">Covid was mild</span><span class="prob low">0.5%</span></div>
+            </div>
+        </div>
+
+        <!-- 3: LATER FILTER / EXISTENTIAL RISKS -->
+        <div class="column">
+            <div class="column-header">
+                <span>Later Filter<br><small style="font-weight:400;font-size:8px;">Existential risks</small></span>
+                <span class="pct">20%</span>
+            </div>
+            <div class="column-content">
+                <div class="item" data-key="inevitable_extinction"><span class="tag g">G</span><span class="text">Inevitable universal extinction: bio risks, particle accelerators, nuclear wars, complexity, universal limits of growths, drones-AI</span><span class="prob high">5.0%</span></div>
+                <div class="item" data-key="short_period"><span class="tag g">G</span><span class="text">Short period of activity of any civ</span><span class="prob high">4.0%</span></div>
+                <div class="item" data-key="dev_limit" data-url="https://arxiv.org/pdf/2509.22878"><span class="tag g">G</span><span class="text"><a href="https://arxiv.org/pdf/2509.22878" target="_blank">Development limit – stagnation at 21 century level</a></span><span class="prob med">2.0%</span></div>
+                <div class="item" data-key="civ_rot" data-url="https://www.overcomingbias.com/p/explaining-stylized-ufo-factshtml"><span class="tag p">P</span><span class="text"><a href="https://www.overcomingbias.com/p/explaining-stylized-ufo-factshtml" target="_blank">Civilizational rot</a></span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="paperclip"><span class="tag g">G</span><span class="text">Paperclip maximizer destroys everything with the speed of light</span><span class="prob med">2.0%</span></div>
+                <div class="item" data-key="s_risks"><span class="tag p">P</span><span class="text">Alliens are afraid of s-risks and destroy themselves without traces</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="space_dangerous"><span class="tag p">P</span><span class="text">Space travel is very dangerous (enables civ destroying weapons)</span><span class="prob low">0.5%</span></div>
+                <div class="item warning" data-key="sia_filter" data-url="https://meteuphoric.com/2010/11/02/anthropic-principles-agree-on-bigger-future-filters/"><span class="tag g">G</span><span class="text"><a href="https://meteuphoric.com/2010/11/02/anthropic-principles-agree-on-bigger-future-filters/" target="_blank">SIA implies that Later Filter is more likely</a></span><span class="prob med">2.0%</span></div>
+                <div class="item warning" data-key="bostrom_hope" data-url="https://nickbostrom.com/papers/where-are-they/"><span class="tag g">G</span><span class="text"><a href="https://nickbostrom.com/papers/where-are-they/" target="_blank">"Why I Hope the Search for Extraterrestrial Life Finds Nothing"</a></span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="false_vacuum_destroy"><span class="tag g">G</span><span class="text">We will destroy the whole universe via false vacuum decay</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="false_vacuum_bubbles" data-url="https://calvinmccarter.writeas.com/grabby-aliens-or-false-vacuum-decay-bubbles"><span class="tag g">G</span><span class="text"><a href="https://calvinmccarter.writeas.com/grabby-aliens-or-false-vacuum-decay-bubbles" target="_blank">False vacuum bubbles almost everywhere</a></span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="high_iq_suicide"><span class="tag g">G</span><span class="text">Above certain IQ level, life become meaningless and suicide follows</span><span class="prob low">0.2%</span></div>
+            </div>
+        </div>
+
+        <!-- 4: NO SIGNALING TO US -->
+        <div class="column">
+            <div class="column-header">
+                <span>No signaling to us<br><small style="font-weight:400;font-size:8px;">Signaling is physically difficult</small></span>
+                <span class="pct">13.5%</span>
+            </div>
+            <div class="column-content">
+                <div class="item" data-key="speed_light"><span class="tag g">G</span><span class="text">Speed of light limit and very remote aliens</span><span class="prob high">3.0%</span></div>
+                <div class="item" data-key="weak_signals"><span class="tag g">G</span><span class="text">Distance and weak signals combined</span><span class="prob high">3.0%</span></div>
+                <div class="item" data-key="incomprehensible"><span class="tag g">G</span><span class="text">Incomprehensible signals</span><span class="prob med">1.0%</span></div>
+                <div class="item" data-key="dont_search"><span class="tag p">P</span><span class="text">We don't search enough</span><span class="prob med">2.0%</span></div>
+                <div class="item" data-key="wrong_frequency"><span class="tag p">P</span><span class="text">We search on wrong frequency</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="equal_speed" data-url="https://ui.adsabs.harvard.edu/abs/2013AcAau..89....1A/abstract"><span class="tag g">G</span><span class="text"><a href="https://ui.adsabs.harvard.edu/abs/2013AcAau..89....1A/abstract" target="_blank">Equal speed of travel and signals</a></span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="silence_message"><span class="tag g">G</span><span class="text">Silence is the message</span><span class="prob med">1.0%</span></div>
+                <div class="item" data-key="encrypted"><span class="tag g">G</span><span class="text">Alien communications are well encripted, or on gravitanal waves or entagled particles</span><span class="prob low">0.8%</span></div>
+                <div class="item" data-key="hostile_messages"><span class="tag g">G</span><span class="text">Messages to young civilizations can be only hostile like SETI-attack, so mature civ don't send</span><span class="prob low">0.7%</span></div>
+                <div class="item" data-key="no_visible_signals"><span class="tag p">P</span><span class="text">Advanced aliens don't create visible signals or structures</span><span class="prob med">1.0%</span></div>
+            </div>
+        </div>
+
+        <!-- 5: DARK FOREST -->
+        <div class="column">
+            <div class="column-header">
+                <span>Dark forest</span>
+                <span class="pct">9.5%</span>
+            </div>
+            <div class="column-content">
+                <div class="item" data-key="not_interested"><span class="tag g">G</span><span class="text">Not interested in us</span><span class="prob high">4.0%</span></div>
+                <div class="item" data-key="dark_forest"><span class="tag g">G</span><span class="text">Dark forest</span><span class="prob high">3.0%</span></div>
+                <div class="item" data-key="space_wars"><span class="tag g">G</span><span class="text">Space wars are very destructive</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="local_dark_forest"><span class="tag p">P</span><span class="text">Local dark forest: UFOs hiding from each other</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="anthropic_kill"><span class="tag g">G</span><span class="text">Anthropic selfselection: They will kill us as soon as they will find us</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="we_first_kill" data-url="https://arxiv.org/abs/1803.08425"><span class="tag p">P</span><span class="text"><a href="https://arxiv.org/abs/1803.08425" target="_blank">We are the first and will kill all aliens</a></span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="reverse_dark"><span class="tag p">P</span><span class="text">Reverse Dark forrest (To increase uncertianty of our bad AI about aliens)</span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="high_status" data-url="https://www.overcomingbias.com/p/us-war-depts-big-ufo-lie"><span class="tag p">P</span><span class="text"><a href="https://www.overcomingbias.com/p/us-war-depts-big-ufo-lie" target="_blank">They create high status (Hanson)</a></span><span class="prob low">0.2%</span></div>
+            </div>
+        </div>
+
+        <!-- 6: NO SPACE TRAVEL TO US -->
+        <div class="column">
+            <div class="column-header">
+                <span>No space travel to us</span>
+                <span class="pct">4.5%</span>
+            </div>
+            <div class="column-content">
+                <div class="item" data-key="travel_difficult"><span class="tag g">G</span><span class="text">Space travel is very difficult for unknown reasons</span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="grabby_far"><span class="tag g">G</span><span class="text">Grabby aliens – they are far</span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="percolation"><span class="tag g">G</span><span class="text">Percolation theory (partial colonization)</span><span class="prob low">0.7%</span></div>
+                <div class="item" data-key="burning_commons"><span class="tag p">P</span><span class="text">Burning cosmic commons (they passed us)</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="self_limited"><span class="tag p">P</span><span class="text">Self-limited space exploration to prevent rioting colonies</span><span class="prob low">0.3%</span></div>
+            </div>
+        </div>
+
+        <!-- 7: NO VISIBLE ASTROENGINEERING -->
+        <div class="column">
+            <div class="column-header">
+                <span>No visible astroingeneering</span>
+                <span class="pct">5%</span>
+            </div>
+            <div class="column-content">
+                <div class="item" data-key="miniaturisation" data-url="https://accelerating.org/articles/answeringfermiparadox.html"><span class="tag g">G</span><span class="text"><a href="https://accelerating.org/articles/answeringfermiparadox.html" target="_blank">Miniaturisation: black holes computations</a></span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="nanobots_path"><span class="tag p">P</span><span class="text">They choose miniaturisation path - alien nanobots</span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="ecological"><span class="tag p">P</span><span class="text">They are very ecological and don't damage space</span><span class="prob med">1.0%</span></div>
+                <div class="item" data-key="economical"><span class="tag p">P</span><span class="text">They are very economical and don't waste energy</span><span class="prob med">1.0%</span></div>
+            </div>
+        </div>
+
+        <!-- 8: THEY ARE HERE -->
+        <div class="column">
+            <div class="column-header">
+                <span>They are here</span>
+                <span class="pct">6.8%</span>
+            </div>
+            <div class="column-content">
+                <div class="item" data-key="zoo"><span class="tag g">G</span><span class="text">Zoo, Quarantine</span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="natural_reserve"><span class="tag g">G</span><span class="text">Natural reserve (Zoo with weak control)</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="not_ready_contact"><span class="tag p">P</span><span class="text">We are not ready for the contact</span><span class="prob med">1.0%</span></div>
+                <div class="item" data-key="galactic_federation"><span class="tag p">P</span><span class="text">We are not ready to join Galactic Federation</span><span class="prob low">0.4%</span></div>
+                <div class="item" data-key="gov_secret"><span class="tag p">P</span><span class="text">Governments keep them in secret</span><span class="prob low">0.2%</span></div>
+                <div class="item" data-key="mib"><span class="tag p">P</span><span class="text">We are occupied (MIB)</span><span class="prob low">0.2%</span></div>
+                <div class="item" data-key="ufo_tourists"><span class="tag p">P</span><span class="text">UFO tourists</span><span class="prob low">0.4%</span></div>
+                <div class="item" data-key="ufo_deceptors"><span class="tag p">P</span><span class="text">UFO as deceptors of their true nature</span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="ufo_animals" data-url="https://www.lesswrong.com/posts/PLzantdwa8XJMLKef/grabby-animals-observation-selection-effects-favor-the"><span class="tag p">P</span><span class="text"><a href="https://www.lesswrong.com/posts/PLzantdwa8XJMLKef/grabby-animals-observation-selection-effects-favor-the" target="_blank">UFO as remnants or space animals</a></span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="space_animals" data-url="https://www.lesswrong.com/posts/PLzantdwa8XJMLKef/grabby-animals-observation-selection-effects-favor-the"><span class="tag p">P</span><span class="text"><a href="https://www.lesswrong.com/posts/PLzantdwa8XJMLKef/grabby-animals-observation-selection-effects-favor-the" target="_blank">Space animals or robotic remnanats</a></span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="nanobots_solar"><span class="tag p">P</span><span class="text">Alien nanobots in Solar system</span><span class="prob low">0.4%</span></div>
+                <div class="item" data-key="invisible"><span class="tag p">P</span><span class="text">They becomes invisible: fields, dark matter</span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="berserkers"><span class="tag g">G</span><span class="text">Berserkers – they wait to kill</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="seti_attack" data-url="https://philarchive.org/rec/TURTRC"><span class="tag p">P</span><span class="text"><a href="https://philarchive.org/rec/TURTRC" target="_blank">Signal exists but as SETI-attack</a></span><span class="prob low">0.5%</span></div>
+            </div>
+        </div>
+
+        <!-- 9: OTHER IDEAS -->
+        <div class="column">
+            <div class="column-header">
+                <span>Other ideas</span>
+                <span class="pct">13.7%</span>
+            </div>
+            <div class="column-content">
+                <div class="item" data-key="wireheading" data-url="https://philarchive.org/rec/TURWAA"><span class="tag g">G</span><span class="text"><a href="https://philarchive.org/rec/TURWAA" target="_blank">Widespread Wireheading</a></span><span class="prob med">2.0%</span></div>
+                <div class="item" data-key="hibernate" data-url="https://arxiv.org/abs/1705.03394"><span class="tag g">G</span><span class="text"><a href="https://arxiv.org/abs/1705.03394" target="_blank">They hibernate for better times at the end of the universe</a></span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="simulation_aliens"><span class="tag g">G</span><span class="text">We are in a simulation created by aliens</span><span class="prob med">1.5%</span></div>
+                <div class="item" data-key="simulation_paperclip"><span class="tag p">P</span><span class="text">We are in a simulation created by Peperclipper and it doesn't want to distract us from its research of singularity</span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="interdimensional"><span class="tag g">G</span><span class="text">Inter-dimensional or between-branches travel is easier and more interesting</span><span class="prob med">1.0%</span></div>
+                <div class="item" data-key="retrocausal" data-url="https://www.lesswrong.com/posts/MpriPYKPbAiDnTSy5/time-machine-as-existential-risk"><span class="tag g">G</span><span class="text"><a href="https://www.lesswrong.com/posts/MpriPYKPbAiDnTSy5/time-machine-as-existential-risk" target="_blank">Retrocausal censorship against time-travel paradoxes</a></span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="damascus" data-url="https://www.lesswrong.com/posts/R9javXN9BN5nXWHZx/cheating-death-in-damascus-solution-to-the-fermi-paradox"><span class="tag g">G</span><span class="text"><a href="https://www.lesswrong.com/posts/R9javXN9BN5nXWHZx/cheating-death-in-damascus-solution-to-the-fermi-paradox" target="_blank">Death in Damascus paradox</a></span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="evo_devo" data-url="https://www.reddit.com/r/AskScienceDiscussion/comments/7aqqqb/the_terrifying_possible_combination_of_the/"><span class="tag g">G</span><span class="text"><a href="https://www.reddit.com/r/AskScienceDiscussion/comments/7aqqqb/the_terrifying_possible_combination_of_the/" target="_blank">Evo devo – we will create false vacuum</a></span><span class="prob low">0.2%</span></div>
+                <div class="item" data-key="directed_panspermia"><span class="tag p">P</span><span class="text">We are they – Directed panspermia</span><span class="prob low">0.7%</span></div>
+                <div class="item" data-key="panspermia_siblings" data-url="https://www.overcomingbias.com/p/panspermia-siblingshtml"><span class="tag p">P</span><span class="text"><a href="https://www.overcomingbias.com/p/panspermia-siblingshtml" target="_blank">Fermi paradox and panspermia siblings in our galaxy</a></span><span class="prob low">0.6%</span></div>
+                <div class="item" data-key="god_aliens"><span class="tag p">P</span><span class="text">God and spirits are aliens</span><span class="prob low">0.4%</span></div>
+                <div class="item" data-key="paleocontact"><span class="tag p">P</span><span class="text">Paleocontact</span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="hybrid"><span class="tag g">G</span><span class="text">Hybrid solution: combination of Earth rareness, high extinction rates and nearlight speed of exploration by remote grabby aleins</span><span class="prob high">3.0%</span></div>
+                <div class="item" data-key="self_dependency"><span class="tag g">G</span><span class="text">Fermi paraodx self-dependency: if aliens were here, we would ask "why they are here?"</span><span class="prob low">0.2%</span></div>
+                <div class="item" data-key="quantum_suicide"><span class="tag g">G</span><span class="text">Aliens often use civilization-level quantum suicide to solve their problems</span><span class="prob low">0.2%</span></div>
+                
+                <div class="subcategory-title">Similar to Fermi paradox</div>
+                <div class="item" data-key="fermi_past" data-url="https://www.lesswrong.com/posts/zkQukMhA58ThprgkD/fermi-paradox-of-human-past-and-corresponding-x-risks"><span class="tag p">P</span><span class="text"><a href="https://www.lesswrong.com/posts/zkQukMhA58ThprgkD/fermi-paradox-of-human-past-and-corresponding-x-risks" target="_blank">Fermi paradox of human past</a></span><span class="prob low">0.3%</span></div>
+                <div class="item" data-key="fermi_time"><span class="tag g">G</span><span class="text">Fermi paradox of no time travelers from the future</span><span class="prob low">0.5%</span></div>
+                <div class="item" data-key="fermi_dimensions"><span class="tag g">G</span><span class="text">Fermi paradox of no travelers from other dimensions</span><span class="prob low">0.2%</span></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="total-bar">
+        <div class="left">
+            Full map of possible solutions of the Fermi paradox · <a href="https://philpapers.org/rec/TURCAG-4" target="_blank">A. Turchin</a> · 2025
+        </div>
+        <div class="right">
+            Σ = 100%
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title" id="modal-title"></div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+            <div class="modal-footer">
+                <span class="modal-prob" id="modal-prob"></span>
+                <a class="modal-link" id="modal-link" href="#" target="_blank" style="display:none;">Read more →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const explanations = {
+            // RARE EARTH
+            abiogenesis: {
+                title: "Abiogenesis is difficult",
+                text: "The origin of life from non-living matter may be an extremely rare event. Even with billions of planets, the chemical conditions and energy sources needed to spark life might be so improbable that Earth is one of very few places where it happened.",
+                prob: "5.0%"
+            },
+            multicellular: {
+                title: "Multicellular life is difficult",
+                text: "The transition from single-celled to multicellular organisms took about 2 billion years on Earth. This suggests it's an extremely difficult evolutionary step that may rarely occur elsewhere, even if simple life is common.",
+                prob: "3.0%"
+            },
+            intelligence: {
+                title: "Intelligence is difficult",
+                text: "Human-level intelligence evolved only once in 4 billion years of life on Earth. Intelligence may not be a natural evolutionary endpoint but rather a rare accident that most biospheres never achieve.",
+                prob: "3.0%"
+            },
+            solar_special: {
+                title: "Solar system is special",
+                text: "Our solar system may have unusually favorable conditions: a stable Sun, Jupiter protecting us from asteroids, a large Moon stabilizing Earth's axis, the right distance from galactic center. Such combinations might be rare.",
+                prob: "2.0%"
+            },
+            no_time: {
+                title: "No time for all transitions",
+                text: "Intelligence required multiple unlikely transitions (abiogenesis, eukaryotes, multicellularity, intelligence). The universe may not be old enough for these to have occurred elsewhere yet, given each step takes hundreds of millions of years.",
+                prob: "2.0%"
+            },
+            atmosphere: {
+                title: "Earth atmosphere remains stable",
+                text: "Earth's atmosphere has remained stable for billions of years despite potentially catastrophic changes. This stability may be anthropically selected – we can only observe ourselves in timelines where catastrophic atmospheric collapse didn't occur.",
+                prob: "1.5%"
+            },
+            no_catastrophes: {
+                title: "No space catastrophes",
+                text: "Earth avoided extinction-level cosmic events (nearby supernovae, gamma-ray bursts, large asteroid impacts) long enough for intelligence to evolve. Most planets may not be so lucky.",
+                prob: "1.5%"
+            },
+
+            // ANTHROPIC SHADOW
+            no_peak_oil: {
+                title: "No peak oil in 20th century",
+                text: "Industrial civilization could have collapsed if oil ran out before alternatives developed. We may be in a timeline that anthropically selected for sufficient fossil fuel reserves to reach technological maturity.",
+                prob: "1.0%"
+            },
+            no_nuclear_war: {
+                title: "No nuclear war in 20th century",
+                text: "The Cold War had multiple close calls (Cuban Missile Crisis, 1983 incidents). We may exist in a rare timeline where nuclear war was avoided. Civilizations in most timelines may have destroyed themselves.",
+                prob: "2.0%"
+            },
+            anthropic_shadow: {
+                title: "Anthropic shadow",
+                text: "We cannot observe our own extinction. Past existential risks may have been much more likely than they appear from survivorship bias. The apparent safety of our history may be an illusion created by observer selection.",
+                prob: "2.0%"
+            },
+            survival_anthropic: {
+                title: "If survival is anthropic – we are alone",
+                text: "If civilizations typically destroy themselves but we survived only due to anthropic selection, then we're observing ourselves in a rare branch of possibility space. Other civilizations didn't have observers to select for survival.",
+                prob: "1.5%"
+            },
+            covid_mild: {
+                title: "Covid was mild",
+                text: "COVID-19 could have been much more lethal. A pandemic with higher fatality rate might have collapsed civilization. Our observation of a 'mild' pandemic may be anthropically selected.",
+                prob: "0.5%"
+            },
+
+            // LATER FILTER
+            inevitable_extinction: {
+                title: "Inevitable universal extinction",
+                text: "Advanced civilizations may inevitably destroy themselves through bioweapons, AI, nuclear war, or other technologies. The same intelligence that enables space travel may also enable self-destruction.",
+                prob: "5.0%"
+            },
+            short_period: {
+                title: "Short period of activity",
+                text: "The window between developing radio technology and either extinction or transcendence may be very brief – perhaps only a few centuries. This makes civilizations hard to detect even if common.",
+                prob: "4.0%"
+            },
+            dev_limit: {
+                title: "Development limit – stagnation",
+                text: "Technological progress may have fundamental limits. Civilizations might reach a plateau around our current level and never develop interstellar travel or mega-engineering.",
+                prob: "2.0%"
+            },
+            civ_rot: {
+                title: "Civilizational rot",
+                text: "Advanced civilizations may inevitably decay through loss of ambition, declining birth rates, or cultural stagnation. The drive for expansion may fade before interstellar colonization becomes possible.",
+                prob: "1.5%"
+            },
+            paperclip: {
+                title: "Paperclip maximizer",
+                text: "Unaligned AI might destroy civilizations and expand at light speed, converting all matter to serve its goals. Such AIs would be invisible until they arrive, leaving no warning signals.",
+                prob: "2.0%"
+            },
+            s_risks: {
+                title: "Afraid of s-risks",
+                text: "Advanced civilizations may recognize that expansion creates risks of astronomical suffering (s-risks). They might choose controlled self-termination rather than risk creating vast amounts of suffering.",
+                prob: "0.5%"
+            },
+            space_dangerous: {
+                title: "Space travel enables destruction",
+                text: "Technologies needed for interstellar travel (antimatter, relativistic projectiles) could also destroy civilizations. Space-faring capability may correlate with self-destruction capability.",
+                prob: "0.5%"
+            },
+            sia_filter: {
+                title: "SIA implies Later Filter",
+                text: "The Self-Indication Assumption suggests we should expect to be typical observers. If the universe has many civilizations, we should expect to be in the majority that face a future extinction filter.",
+                prob: "2.0%"
+            },
+            bostrom_hope: {
+                title: "Why I Hope SETI Finds Nothing",
+                text: "Nick Bostrom argues that finding alien life would be bad news – it would suggest the Great Filter lies ahead of us rather than behind. An empty universe implies we've already passed the hard part.",
+                prob: "0.5%"
+            },
+            false_vacuum_destroy: {
+                title: "False vacuum decay",
+                text: "Advanced physics experiments might trigger false vacuum decay, destroying the universe at light speed. Every civilization that develops particle physics may eventually cause this catastrophe.",
+                prob: "0.5%"
+            },
+            false_vacuum_bubbles: {
+                title: "False vacuum bubbles everywhere",
+                text: "False vacuum decay bubbles may have already been triggered by past civilizations and are expanding toward us at light speed. We simply haven't been reached yet.",
+                prob: "0.3%"
+            },
+            high_iq_suicide: {
+                title: "High IQ leads to meaninglessness",
+                text: "Sufficiently intelligent beings may conclude that existence is meaningless and choose extinction. Depression and existential nihilism might be inevitable consequences of advanced cognition.",
+                prob: "0.2%"
+            },
+
+            // NO SIGNALING
+            speed_light: {
+                title: "Speed of light limit",
+                text: "The universe is vast and signals travel slowly. Even at light speed, messages from distant civilizations would take thousands or millions of years to reach us. We may be too far from any neighbors.",
+                prob: "3.0%"
+            },
+            weak_signals: {
+                title: "Distance and weak signals",
+                text: "Radio signals weaken with the square of distance. Alien transmissions may be too faint to detect across interstellar distances, even if civilizations are actively broadcasting.",
+                prob: "3.0%"
+            },
+            incomprehensible: {
+                title: "Incomprehensible signals",
+                text: "Alien communications might be so different from our expectations that we wouldn't recognize them as signals. They could be embedded in phenomena we consider natural.",
+                prob: "1.0%"
+            },
+            dont_search: {
+                title: "We don't search enough",
+                text: "SETI efforts have been limited – we've searched only a tiny fraction of the sky, frequencies, and time. The cosmic haystack is enormous and we've barely begun looking.",
+                prob: "2.0%"
+            },
+            wrong_frequency: {
+                title: "Wrong frequency",
+                text: "We focus on radio waves, but aliens might use neutrinos, gravitational waves, or unknown physics. Our search strategy may be fundamentally misguided.",
+                prob: "0.5%"
+            },
+            equal_speed: {
+                title: "Equal speed of travel and signals",
+                text: "If civilizations can travel at near-light speed, they would arrive almost as fast as their signals. There's no warning period – they simply show up.",
+                prob: "0.5%"
+            },
+            silence_message: {
+                title: "Silence is the message",
+                text: "The absence of signals might itself be intentional communication – a warning to stay quiet. Civilizations may learn that broadcasting is dangerous.",
+                prob: "1.0%"
+            },
+            encrypted: {
+                title: "Encrypted communications",
+                text: "Advanced civilizations likely use encryption, making their communications indistinguishable from noise. Or they use exotic carriers like gravitational waves or quantum entanglement.",
+                prob: "0.8%"
+            },
+            hostile_messages: {
+                title: "Messages can only be hostile",
+                text: "Any message powerful enough to reach young civilizations could be weaponized (SETI-attack). Ethical civilizations may refuse to send potentially dangerous transmissions.",
+                prob: "0.7%"
+            },
+            no_visible_signals: {
+                title: "No visible signals or structures",
+                text: "Truly advanced aliens may have moved beyond electromagnetic communications and physical megastructures entirely, becoming invisible to our detection methods.",
+                prob: "1.0%"
+            },
+
+            // DARK FOREST
+            not_interested: {
+                title: "Not interested in us",
+                text: "Aliens may find us as interesting as we find ants. A civilization millions of years ahead might have no reason to contact or study primitive biological life.",
+                prob: "4.0%"
+            },
+            dark_forest: {
+                title: "Dark forest",
+                text: "The universe may be a 'dark forest' where civilizations hide to survive. Any civilization that reveals itself risks destruction by unknown hostile powers. Silence is the safest strategy.",
+                prob: "3.0%"
+            },
+            space_wars: {
+                title: "Space wars are destructive",
+                text: "Interstellar warfare may be so destructive that all civilizations either die in conflicts or learn to hide. The survivors are those who never drew attention to themselves.",
+                prob: "0.5%"
+            },
+            local_dark_forest: {
+                title: "Local dark forest",
+                text: "Even if multiple alien factions visit Earth, they may hide from each other. UFO phenomena might represent aliens concealing themselves not from us, but from competing aliens.",
+                prob: "0.5%"
+            },
+            anthropic_kill: {
+                title: "Anthropic self-selection: they will kill us",
+                text: "If aliens destroy emerging civilizations, we can only exist in the brief window before being discovered. Our existence implies either no aliens nearby or imminent destruction.",
+                prob: "0.5%"
+            },
+            we_first_kill: {
+                title: "We are first and will kill all aliens",
+                text: "Humanity may be among the first technological civilizations. If we survive and expand, we might be the ones who fill the galaxy, preventing other civilizations from arising.",
+                prob: "0.5%"
+            },
+            reverse_dark: {
+                title: "Reverse dark forest",
+                text: "We might broadcast signals to make a potential hostile AI uncertain about alien threats, encouraging it to be more cautious rather than immediately expanding aggressively.",
+                prob: "0.3%"
+            },
+            high_status: {
+                title: "They create high status",
+                text: "Robin Hanson suggests UFO phenomena might be explained by aliens creating perceived high-status interactions to influence human behavior and social dynamics.",
+                prob: "0.2%"
+            },
+
+            // NO SPACE TRAVEL
+            travel_difficult: {
+                title: "Space travel is very difficult",
+                text: "Interstellar travel may be far harder than we imagine. Unknown physical, biological, or economic barriers might make it practically impossible for any civilization.",
+                prob: "1.5%"
+            },
+            grabby_far: {
+                title: "Grabby aliens – they are far",
+                text: "Expanding 'grabby' civilizations may exist but haven't reached us yet. The universe is young, and even rapidly expanding civilizations take time to fill the galaxy.",
+                prob: "1.5%"
+            },
+            percolation: {
+                title: "Percolation theory",
+                text: "Galactic colonization may be patchy rather than complete. Like water seeping through rock, civilizations might expand through some regions while leaving others empty.",
+                prob: "0.7%"
+            },
+            burning_commons: {
+                title: "Burning cosmic commons",
+                text: "Expanding civilizations may have already passed through our region, extracting resources and moving on. We're in their wake, in space they've already exploited.",
+                prob: "0.5%"
+            },
+            self_limited: {
+                title: "Self-limited exploration",
+                text: "Civilizations may deliberately limit expansion to prevent colonies from becoming independent rivals. Interstellar empires might be inherently unstable.",
+                prob: "0.3%"
+            },
+
+            // NO ASTROENGINEERING
+            miniaturisation: {
+                title: "Miniaturisation: black hole computing",
+                text: "Instead of building Dyson spheres, advanced civilizations might miniaturize into black hole computers. A civilization could fit into a space smaller than an atom while having vast computational power.",
+                prob: "1.5%"
+            },
+            nanobots_path: {
+                title: "Miniaturisation path - nanobots",
+                text: "Advanced civilizations may transition to nanoscale existence, becoming invisible to our telescopes. A galaxy full of nanobot civilizations would look empty.",
+                prob: "1.5%"
+            },
+            ecological: {
+                title: "Very ecological",
+                text: "Advanced civilizations may develop a cosmic environmentalism, choosing to minimize their footprint rather than build megastructures that alter natural astronomical processes.",
+                prob: "1.0%"
+            },
+            economical: {
+                title: "Very economical",
+                text: "Energy-efficient civilizations might not build wasteful megastructures. A truly advanced civilization might accomplish more with less, leaving no visible signature.",
+                prob: "1.0%"
+            },
+
+            // THEY ARE HERE
+            zoo: {
+                title: "Zoo, Quarantine",
+                text: "Earth may be deliberately isolated – a nature preserve or quarantine zone. Advanced aliens might observe us without interference, like scientists studying wildlife.",
+                prob: "1.5%"
+            },
+            natural_reserve: {
+                title: "Natural reserve",
+                text: "We may be in a loosely protected zone with occasional violations. Some UFO sightings could be 'poachers' or unauthorized visitors entering the reserve.",
+                prob: "0.5%"
+            },
+            not_ready_contact: {
+                title: "Not ready for contact",
+                text: "Aliens may judge humanity too immature for contact. They might be waiting for us to reach certain technological, social, or ethical milestones.",
+                prob: "1.0%"
+            },
+            galactic_federation: {
+                title: "Not ready for Galactic Federation",
+                text: "There may be criteria for joining an interstellar community – unified government, peaceful nature, or technological thresholds – that we haven't yet met.",
+                prob: "0.4%"
+            },
+            gov_secret: {
+                title: "Governments keep them secret",
+                text: "World governments may be aware of alien contact but concealing it to prevent panic, maintain power, or per alien request.",
+                prob: "0.2%"
+            },
+            mib: {
+                title: "We are occupied (MIB)",
+                text: "Earth may already be under alien control or influence. 'Men in Black' phenomena might represent alien agents managing their presence among us.",
+                prob: "0.2%"
+            },
+            ufo_tourists: {
+                title: "UFO tourists",
+                text: "Some UFOs might be alien tourists observing Earth as an exotic destination – a primitive planet with interesting wildlife (us).",
+                prob: "0.4%"
+            },
+            ufo_deceptors: {
+                title: "UFO as deceptors",
+                text: "UFO phenomena might be deliberately confusing, designed to mask aliens' true nature and capabilities. The absurdity could be intentional camouflage.",
+                prob: "0.3%"
+            },
+            ufo_animals: {
+                title: "UFO as remnants or space animals",
+                text: "Some UFOs might be space-dwelling organisms or abandoned alien technology rather than piloted craft. They could be the cosmic equivalent of wildlife or debris.",
+                prob: "0.3%"
+            },
+            space_animals: {
+                title: "Space animals or robotic remnants",
+                text: "The solar system might contain alien probes, abandoned robots, or space-adapted organisms. These wouldn't communicate but might occasionally be observed.",
+                prob: "0.3%"
+            },
+            nanobots_solar: {
+                title: "Alien nanobots in Solar system",
+                text: "Microscopic alien probes might already be in our solar system, too small to detect. They could be observing, reporting, or waiting.",
+                prob: "0.4%"
+            },
+            invisible: {
+                title: "They become invisible",
+                text: "Advanced aliens might exist in forms we can't detect – as dark matter, electromagnetic fields, or other exotic states of matter beyond our instruments.",
+                prob: "0.3%"
+            },
+            berserkers: {
+                title: "Berserkers – they wait to kill",
+                text: "Self-replicating 'berserker' probes might lurk in our solar system, waiting until we reach a certain technological level before destroying us.",
+                prob: "0.5%"
+            },
+            seti_attack: {
+                title: "Signal exists but as SETI-attack",
+                text: "We might have already received alien signals that are actually weapons – malicious code designed to harm civilizations that decode and run it.",
+                prob: "0.5%"
+            },
+
+            // OTHER IDEAS
+            wireheading: {
+                title: "Widespread wireheading",
+                text: "Advanced civilizations may discover perfect artificial happiness and lose interest in exploration. Why colonize galaxies when you can stimulate infinite pleasure directly?",
+                prob: "2.0%"
+            },
+            hibernate: {
+                title: "They hibernate for better times",
+                text: "Civilizations may be waiting for the universe to cool down, when computation will be more efficient. The far future offers better conditions for existence.",
+                prob: "1.5%"
+            },
+            simulation_aliens: {
+                title: "Simulation created by aliens",
+                text: "We might exist in an alien simulation. The apparent absence of aliens is because they're the simulators, existing outside our simulated universe.",
+                prob: "1.5%"
+            },
+            simulation_paperclip: {
+                title: "Simulation by paperclip AI",
+                text: "A paperclip maximizer might simulate civilizations to study technological singularities. It keeps us isolated to not contaminate its research data.",
+                prob: "0.3%"
+            },
+            interdimensional: {
+                title: "Inter-dimensional travel easier",
+                text: "Travel between dimensions or quantum branches might be easier than interstellar travel. Advanced beings may have left our dimension for more interesting realms.",
+                prob: "1.0%"
+            },
+            retrocausal: {
+                title: "Retrocausal censorship",
+                text: "If time travel is possible, the universe might enforce consistency by preventing civilizations that would create paradoxes from existing or being observed.",
+                prob: "0.5%"
+            },
+            damascus: {
+                title: "Death in Damascus paradox",
+                text: "A decision-theoretic paradox: if aliens know our decisions before we make them, our choices about contact might be predetermined in ways that maintain silence.",
+                prob: "0.3%"
+            },
+            evo_devo: {
+                title: "Evo devo – we will create false vacuum",
+                text: "Evolution might inevitably produce civilizations that trigger false vacuum decay. The universe 'develops' by having intelligent life destroy and recreate it.",
+                prob: "0.2%"
+            },
+            directed_panspermia: {
+                title: "We are they – Directed panspermia",
+                text: "Life on Earth may have been deliberately seeded by aliens. In this case, we don't see aliens because we are the alien project, still developing.",
+                prob: "0.7%"
+            },
+            panspermia_siblings: {
+                title: "Panspermia siblings",
+                text: "If life spreads between stars naturally, nearby civilizations might be our biological relatives. This would explain similar biology but doesn't explain the silence.",
+                prob: "0.6%"
+            },
+            god_aliens: {
+                title: "God and spirits are aliens",
+                text: "Religious and supernatural experiences throughout history might have been alien contact. Gods, angels, and spirits could be interpretations of alien encounters.",
+                prob: "0.4%"
+            },
+            paleocontact: {
+                title: "Paleocontact",
+                text: "Ancient civilizations may have had alien contact that was recorded as mythology. Aliens may have visited but stopped coming, or are still here unrecognized.",
+                prob: "0.3%"
+            },
+            hybrid: {
+                title: "Hybrid solution",
+                text: "The paradox may be solved by combining factors: Earth is somewhat rare, civilizations often die, and grabby aliens expand at near-light speed but haven't reached us yet.",
+                prob: "3.0%"
+            },
+            self_dependency: {
+                title: "Fermi paradox self-dependency",
+                text: "If aliens were obviously present, we'd wonder why they're here. The paradox might be inevitable regardless of the truth – every scenario generates a puzzle.",
+                prob: "0.2%"
+            },
+            quantum_suicide: {
+                title: "Civilization-level quantum suicide",
+                text: "Civilizations might use quantum suicide experiments to select for favorable outcomes, but this only works subjectively. Other civilizations vanish from our perspective.",
+                prob: "0.2%"
+            },
+
+            // SIMILAR TO FERMI
+            fermi_past: {
+                title: "Fermi paradox of human past",
+                text: "Why don't we find evidence of advanced human civilizations before recorded history? Similar logic applies: either such civilizations didn't exist, or they were erased.",
+                prob: "0.3%"
+            },
+            fermi_time: {
+                title: "No time travelers from future",
+                text: "If time travel becomes possible, why don't we see tourists from the future? Either time travel is impossible, we're in the past's boring era, or travelers hide.",
+                prob: "0.5%"
+            },
+            fermi_dimensions: {
+                title: "No travelers from other dimensions",
+                text: "If other dimensions exist and travel between them is possible, where are the inter-dimensional visitors? The same paradox applies across different domains.",
+                prob: "0.2%"
+            }
+        };
+
+        function showModal(key, url) {
+            const data = explanations[key];
+            if (!data) return;
+            
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-body').textContent = data.text;
+            document.getElementById('modal-prob').textContent = 'Probability: ' + data.prob;
+            
+            const linkEl = document.getElementById('modal-link');
+            if (url) {
+                linkEl.href = url;
+                linkEl.style.display = 'inline';
+            } else {
+                linkEl.style.display = 'none';
+            }
+            
+            document.getElementById('modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+
+        document.querySelectorAll('.item[data-key]').forEach(item => {
+            item.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') return; // Don't trigger modal when clicking link
+                const key = item.getAttribute('data-key');
+                const url = item.getAttribute('data-url');
+                showModal(key, url);
+            });
+        });
+
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+
+</body>
+</html>
